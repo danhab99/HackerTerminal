@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<title>Hackers Terminal</title>
 	
@@ -5,12 +6,21 @@
 		[isConsole]{
 			width: 100%;
 			height: 100%;
+			overflow: hidden;
+		}
+		div{
+			z-index: 9999;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
 		}
 	</style>
 	
 	<body>
 		
-		<div isConsole console-Script="hacker" console-Forecolor="#00FF00" console-Limit="500" console-Font="monospace"></div>
+		<div isConsole console-Script="hacker" console-Forecolor="#00FF00" console-Limit="50" console-Font="monospace"></div>
 
 		<script src="app.js"></script>
 		<script src="ConsoleJS/console.js"></script>

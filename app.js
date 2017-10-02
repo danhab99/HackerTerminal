@@ -5,48 +5,55 @@ window.onresize = function(){
 };
 
 const commands = [ "find", "do", "hack", "set", "get", "mkdir", "ls" ];
-const abc = "abcdefghijklmnopqrstuvwxyz";
+const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 var hacker = {
 	main: function(C){
 		C.WriteLine("Downloading every word ever");
 		pullFile('words_alpha.txt', function(e){
 			var words = e.split('\n');
+			var speedWave = 5;
 			
 			var myFunc = function(){
+				clearInterval(interval);
 				var line = genPath(words, random(0, 8));
 				line += commands.pickRandom() + ' ';
-				line += genParams();
-				C.WriteLine();
+				line += genParams(words, random(1, 10));
+				C.WriteLine(line.replace(/(\r\n|\n|\r)/gm,""));
 				
-				console.log("Print");
-				interval = setInterval(myFunc, random(1, 5) * 100);
+				if (random(0, 10) == 0){
+					C.Beep();
+				}
+				
+				speedWave = --speedWave > 0 ? speedWave-- : 5;
+				var l = random(1, speedWave) * random(50, 100);
+				interval = setInterval(myFunc, l);
 			};
-			var interval = setInterval(myFunc, random(1, 5) * 100);
+			var interval = setInterval(myFunc, random(1, 10) * 100);
 		});
 	}
 };
 
 function random(min, max) {
-  return Math.random() * (max - min) + min;
+  return parseInt(Math.random() * (max - min) + min);
 }
 
 function genPath(words, depth){
 	const heads = [ '$', '#', '>' ];
 	
-	var r = heads.pickRandom() + 'C:/';
+	var r = heads.pickRandom() + ' ' + abc.pickRandom().toUpperCase() + '/:';
 	for (var i = 0; i < depth; i++) {
 		r += words.pickRandom() + '/';
 	}
 	
-	return r + ':';
+	return r + ':  ';
 }
 
 function genParams(words, depth){
 	var r = '';
 	
 	for (var i = 0; i < depth; i++) {
-		switch (random(0, 3)) {
+		switch (parseInt(random(0, 3))) {
 			case 0:
 				r += "-" + abc.pickRandom();
 				break;
