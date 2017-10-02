@@ -4,14 +4,14 @@ window.onresize = function(){
 	bod.style.width = window.innerWidth;
 };
 
-const commands = { "find", "do", "hack", "set", "get", "mkdir", "ls" }
+const commands = [ "find", "do", "hack", "set", "get", "mkdir", "ls" ];
 const abc = "abcdefghijklmnopqrstuvwxyz";
 
 var hacker = {
 	main: function(C){
-		pullfile('words_alpha.txt', function(e){
+		C.WriteLine("Downloading every word ever");
+		pullFile('words_alpha.txt', function(e){
 			var words = e.split('\n');
-			
 			
 			var myFunc = function(){
 				var line = genPath(words, random(0, 8));
@@ -19,6 +19,7 @@ var hacker = {
 				line += genParams();
 				C.WriteLine();
 				
+				console.log("Print");
 				interval = setInterval(myFunc, random(1, 5) * 100);
 			};
 			var interval = setInterval(myFunc, random(1, 5) * 100);
@@ -31,11 +32,11 @@ function random(min, max) {
 }
 
 function genPath(words, depth){
-	const heads = { '$', '#', '>' };
+	const heads = [ '$', '#', '>' ];
 	
-	var r = heads.pickRandom() + ' ';
+	var r = heads.pickRandom() + 'C:/';
 	for (var i = 0; i < depth; i++) {
-		r += words.pickRandom() + ' ';
+		r += words.pickRandom() + '/';
 	}
 	
 	return r + ':';
@@ -67,7 +68,7 @@ function genParams(words, depth){
 }
 
 Array.prototype.pickRandom = function(){
-	return this[Math.floor(Math.random() * myArray.length)];
+	return this[Math.floor(Math.random() * this.length)];
 };
 
 function makeid() {
