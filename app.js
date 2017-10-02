@@ -10,7 +10,13 @@ const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n
 var hacker = {
 	main: function(C){
 		C.WriteLine("Downloading every word ever");
+		
+		var load = setInterval(function(){
+			C.WriteLine(".");
+		},500);
+		
 		pullFile('words_alpha.txt', function(e){
+			clearInterval(load);
 			var words = e.split('\n');
 			const SPEED = 9;
 			var speedWave = SPEED;
