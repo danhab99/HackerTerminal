@@ -12,11 +12,12 @@ var hacker = {
 		C.WriteLine("Downloading every word ever");
 		pullFile('words_alpha.txt', function(e){
 			var words = e.split('\n');
-			var speedWave = 5;
+			const SPEED = 9;
+			var speedWave = SPEED;
 			
 			var myFunc = function(){
 				clearInterval(interval);
-				var line = genPath(words, random(0, 8));
+				var line = genPath(words, random(0, 20));
 				line += commands.pickRandom() + ' ';
 				line += genParams(words, random(1, 10));
 				C.WriteLine(line.replace(/(\r\n|\n|\r)/gm,""));
@@ -25,7 +26,7 @@ var hacker = {
 					C.Beep();
 				}
 				
-				speedWave = --speedWave > 0 ? speedWave-- : 5;
+				speedWave = --speedWave > 0 ? speedWave-- : SPEED;
 				var l = random(1, speedWave) * random(50, 100);
 				interval = setInterval(myFunc, l);
 			};
