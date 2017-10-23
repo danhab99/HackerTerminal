@@ -4,7 +4,7 @@ window.onresize = function(){
 	bod.style.width = window.innerWidth;
 };
 
-const commands = [ "find", "do", "hack", "set", "get", "mkdir", "ls" ];
+const commands = [ "find", "do", "hack", "set", "get", "mkdir", "ls", "dick", "fuck", "masturbate" ];
 const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 var hacker = {
@@ -18,22 +18,22 @@ var hacker = {
 		pullFile('words_alpha.txt', function(e){
 			clearInterval(load);
 			var words = e.split('\n');
-			const SPEED = 9;
+			const SPEED = 10;
 			var speedWave = SPEED;
 			
 			var myFunc = function(){
 				clearInterval(interval);
-				var line = genPath(words, random(0, 20));
+				var line = genPath(words, random(0, 10));
 				line += commands.pickRandom() + ' ';
 				line += genParams(words, random(1, 10));
 				C.WriteLine(line.replace(/(\r\n|\n|\r)/gm,""));
 				
-				if (random(0, 10) == 0){
+				if (random(0, 10) === 0){
 					C.Beep();
 				}
 				
 				speedWave = --speedWave > 0 ? speedWave-- : SPEED;
-				var l = random(1, speedWave) * random(50, 100);
+				var l = random(1, speedWave) * random(1, 50);
 				interval = setInterval(myFunc, l);
 			};
 			var interval = setInterval(myFunc, random(1, 10) * 100);
