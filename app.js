@@ -48,7 +48,7 @@ function random(min, max) {
 function genPath(words, depth){
 	const heads = [ '$', '#', '>' ];
 	
-	var r = heads.pickRandom() + ' ' + abc.pickRandom().toUpperCase() + '/:';
+	var r = heads.pickRandom() + ' ' + abc.pickRandom().toUpperCase() + ':/';
 	for (var i = 0; i < depth; i++) {
 		r += words.pickRandom() + '/';
 	}
