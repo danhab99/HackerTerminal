@@ -81,6 +81,19 @@ function genParams(words, depth){
 	return r;
 }
 
+function pullFile(f, callback) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+       			// Typical action to be performed when the document is ready:
+       			callback(xhttp.responseText);
+    		}
+	};
+
+	xhttp.open("GET", "words_alpha.txt", true);
+	xhttp.send();
+}
+
 Array.prototype.pickRandom = function(){
 	return this[Math.floor(Math.random() * this.length)];
 };
